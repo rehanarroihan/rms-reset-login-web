@@ -23,6 +23,9 @@
       <div class="mt-5 mb-3">
         <input type="text" class="form-control form-control-lg" id="etUsername" placeholder="RT0000000099999">
       </div>
+      <div class="alert alert-secondary" role="alert" id="alert">
+        A simple secondary alert—check it out!
+      </div>
       <button type="button" id="btnReset" class="btn btn-primary  btn-lg">Reset Login</button>
     </div>
   </div>
@@ -32,7 +35,11 @@
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
   <script>
+    $("#alert").hide();
+
     $('#btnReset').click(function() {
+      $("#alert").hide();
+      
       if ($("#etUsername").val() == '') {
         return
       }
@@ -40,8 +47,9 @@
       axios.post("https://multazamgsd.com/jmyr-api/rms/reset-login", {
         username: $("#etUsername").val()
       }).then(function (response) {
-            console.log(response)
-        })
+        $("#alert").show()
+        $("#alert").html(response.data.message)
+      })
     });
   </script>
 </body>
