@@ -42,15 +42,26 @@
     $("#alert").hide();
     $("#btnLoading").hide();
 
+    $('#etUsername').keypress(function(event){
+      var keycode = (event.keyCode ? event.keyCode : event.which);
+      if(keycode == '13'){
+        reset() 
+      }
+    });
+
     $('#btnReset').click(function() {
+      reset()
+    });
+
+    function reset() {
+      if ($("#etUsername").val() == '') {
+        return
+      }
+      
       $("#alert").hide();
 
       $("#btnLoading").show();
       $("#btnReset").hide();
-
-      if ($("#etUsername").val() == '') {
-        return
-      }
 
       axios.post("https://multazamgsd.com/jmyr-api/rms/reset-login", {
         username: $("#etUsername").val()
@@ -61,7 +72,7 @@
         $("#btnLoading").hide()
         $("#btnReset").show()
       })
-    });
+    }
   </script>
 </body>
 </html>
