@@ -27,6 +27,10 @@
         A simple secondary alert—check it out!
       </div>
       <button type="button" id="btnReset" class="btn btn-primary  btn-lg">Reset Login</button>
+      <button class="btn btn-primary btn-lg" id="btnLoading" type="button" disabled>
+        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+        Silahkan tunggu ...
+      </button>
     </div>
   </div>
 
@@ -36,10 +40,14 @@
 
   <script>
     $("#alert").hide();
+    $("#btnLoading").hide();
 
     $('#btnReset').click(function() {
       $("#alert").hide();
-      
+
+      $("#btnLoading").show();
+      $("#btnReset").hide();
+
       if ($("#etUsername").val() == '') {
         return
       }
@@ -49,6 +57,9 @@
       }).then(function (response) {
         $("#alert").show()
         $("#alert").html(response.data.message)
+      }).finally(function () {
+        $("#btnLoading").hide()
+        $("#btnReset").show()
       })
     });
   </script>
