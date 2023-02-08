@@ -20,7 +20,11 @@
   <div class="container">
     <div class="text-center mt-5">
       <h1>Masukkan Kode Kios RMS</h1>
-      <div class="mt-5 mb-3">
+      <select id="selectServer" class="form-select mt-5 mb-2" aria-label="Default select example">
+        <option selected value="1">Server Prod Maszeeh</option>
+        <option value="2">Server Dev Maszeeh</option>
+      </select>
+      <div class="mb-3">
         <input type="text" class="form-control form-control-lg" id="etUsername" placeholder="RT0000000099999">
       </div>
       <div class="alert alert-secondary" role="alert" id="alert">
@@ -64,7 +68,8 @@
       $("#btnReset").hide();
 
       axios.post("https://multazamgsd.com/jmyr-api/rms/reset-login", {
-        username: $("#etUsername").val()
+        username: $("#etUsername").val(),
+        server: $("#selectServer").val(),
       }).then(function (response) {
         $("#alert").show()
         $("#alert").html(response.data.message)
