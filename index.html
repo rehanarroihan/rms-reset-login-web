@@ -73,8 +73,12 @@
         username: $("#etUsername").val(),
         server: $("#selectServer").val(),
       }).then(function (response) {
+        if (response.data.code == 200 && response.data.success === true) {
+          $("#alert").html("Login berhasil direset")
+        } else {
+          $("#alert").html("Gagal reset, hubungi admin")
+        }
         $("#alert").show()
-        $("#alert").html(response.data.message)
       }).finally(function () {
         $("#btnLoading").hide()
         $("#btnReset").show()
