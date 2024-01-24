@@ -69,7 +69,7 @@
       $("#btnLoading").show();
       $("#btnReset").hide();
 
-      axios.post("https://multazamgsd.com/jmyr-api/rms/reset-login", {
+      axios.post("https://multazamgsd.com/dummy-service/rms/reset-login", {
         username: $("#etUsername").val(),
         server: $("#selectServer").val(),
       }).then(function (response) {
